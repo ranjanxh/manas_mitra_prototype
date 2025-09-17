@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
+import HomePageV2 from './pages/HomePageV2.jsx';
 
-// Import All Pages
+// Import All Student Pages
 import HomePage from './pages/HomePage';
 import AboutUsPage from './pages/AboutUsPage';
 import FeaturesPage from './pages/FeaturesPage';
@@ -15,10 +16,22 @@ import CounselorConnectPage from './pages/CounselorConnectPage';
 import AIChatPage from './pages/AIChatPage';
 import MeditationPage from './pages/MeditationPage';
 
+// Import All Admin Pages
+import AdminDashboardPage from "./admin/pages/AdminDashboardPage.jsx";
+import UsageHeatmapsPage from './admin/pages/UsageHeatmapsPage.jsx';
+import ResourceGapPage from './admin/pages/ResourceGapPage.jsx';
+import ResourceManagementPage from './admin/pages/ResourceManagementPage.jsx';
+import CounselorManagementPage from './admin/pages/CounselorManagementPage.jsx';
+import ModeratorDashboardPage from './admin/pages/ModeratorDashboardPage.jsx';
+import NotificationComposerPage from './admin/pages/NotificationComposerPage.jsx';
+import EventManagementPage from './admin/pages/EventManagementPage.jsx';
+import PlatformSettingsPage from './admin/pages/PlatformSettingsPage.jsx';
+
 // Import Layout Components
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import DashboardSidebar from './components/layout/DashboardSidebar';
+import AdminSidebar from './admin/components/layout/AdminSidebar';
 
 // --- Reusable UI & Animation Components ---
 
@@ -26,10 +39,6 @@ const LoadingScreen = ({ isLoading }) => {
   if (!isLoading) return null;
   return (
     <div className="fixed inset-0 bg-gradient-to-br from-blue-600 to-teal-600 flex items-center justify-center z-50">
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-20 left-20 w-32 h-32 bg-white/10 rounded-full animate-pulse"></div>
-        <div className="absolute bottom-20 right-20 w-20 h-20 bg-white/10 rounded-full animate-bounce delay-500"></div>
-      </div>
       <div className="text-center z-10">
         <h2 className="text-3xl font-bold text-white mb-4">Manas Mitra</h2>
         <p className="text-white/80 text-lg">Preparing your wellness journey...</p>
@@ -92,6 +101,10 @@ function App() {
     navigate('/dashboard');
   };
 
+  const handleAdminLogin = () => {
+    navigate('/admin/dashboard');
+  };
+
   return (
     <>
       <LoadingScreen isLoading={isInitialLoading} />
@@ -100,39 +113,32 @@ function App() {
           <AnimatedBackground />
           <PageTransition>
             <Routes location={location} key={location.pathname}>
-              {/* Public & Auth Routes (Layout with Navbar and Footer) */}
-              <Route path="/" element={<><Navbar isLoggedIn={isLoggedIn} onLogin={handleGuestLogin} /><HomePage /><Footer /></>} />
-              <Route path="/about" element={<><Navbar isLoggedIn={isLoggedIn} onLogin={handleGuestLogin} /><AboutUsPage /><Footer /></>} />
-              <Route path="/features" element={<><Navbar isLoggedIn={isLoggedIn} onLogin={handleGuestLogin} /><FeaturesPage /><Footer /></>} />
-              <Route path="/contact" element={<><Navbar isLoggedIn={isLoggedIn} onLogin={handleGuestLogin} /><ContactPage /><Footer /></>} />
-              <Route path="/login" element={<><Navbar isLoggedIn={isLoggedIn} onLogin={handleGuestLogin} /><LoginPage /></>} />
-              <Route path="/signup" element={<><Navbar isLoggedIn={isLoggedIn} onLogin={handleGuestLogin} /><SignUpPage /></>} />
+              {/* --- Public & Auth Routes --- */}
+              <Route path="/" element={<><Navbar isLoggedIn={isLoggedIn} onLogin={handleGuestLogin} onAdminLogin={handleAdminLogin} /><HomePageV2 /><Footer /></>} />
+              <Route path="/about" element={<><Navbar isLoggedIn={isLoggedIn} onLogin={handleGuestLogin} onAdminLogin={handleAdminLogin} /><AboutUsPage /><Footer /></>} />
+              <Route path="/features" element={<><Navbar isLoggedIn={isLoggedIn} onLogin={handleGuestLogin} onAdminLogin={handleAdminLogin} /><FeaturesPage /><Footer /></>} />
+              <Route path="/contact" element={<><Navbar isLoggedIn={isLoggedIn} onLogin={handleGuestLogin} onAdminLogin={handleAdminLogin} /><ContactPage /><Footer /></>} />
+              <Route path="/login" element={<><Navbar isLoggedIn={isLoggedIn} onLogin={handleGuestLogin} onAdminLogin={handleAdminLogin} /><LoginPage /></>} />
+              <Route path="/signup" element={<><Navbar isLoggedIn={isLoggedIn} onLogin={handleGuestLogin} onAdminLogin={handleAdminLogin} /><SignUpPage /></>} />
 
-              {/* Dashboard Routes (Layout with Sidebar) */}
-              <Route 
-  path="/dashboard" 
-  element={<div className="flex"><DashboardSidebar /><div className="flex-1 ml-64 p-8"><DashboardPage /></div></div>} 
-/>
-<Route 
-  path="/library" 
-  element={<div className="flex"><DashboardSidebar /><div className="flex-1 ml-64 p-8"><WellnessLibraryPage /></div></div>} 
-/>
-<Route 
-  path="/community" 
-  element={<div className="flex"><DashboardSidebar /><div className="flex-1 ml-64 p-8"><CommunityCirclePage /></div></div>} 
-/>
-<Route 
-  path="/connect" 
-  element={<div className="flex"><DashboardSidebar /><div className="flex-1 ml-64 p-8"><CounselorConnectPage /></div></div>} 
-/>
-<Route 
-  path="/ai-chat" 
-  element={<div className="flex"><DashboardSidebar /><div className="flex-1 ml-64 p-8"><AIChatPage /></div></div>} 
-/>
-<Route 
-  path="/meditation" 
-  element={<div className="flex"><DashboardSidebar /><div className="flex-1 ml-64 p-8"><MeditationPage /></div></div>} 
-/>
+              {/* --- Student Dashboard Routes --- */}
+              <Route path="/dashboard" element={<div className="flex"><DashboardSidebar /><div className="flex-1 ml-64 p-8"><DashboardPage /></div></div>} />
+              <Route path="/library" element={<div className="flex"><DashboardSidebar /><div className="flex-1 ml-64 p-8"><WellnessLibraryPage /></div></div>} />
+              <Route path="/community" element={<div className="flex"><DashboardSidebar /><div className="flex-1 ml-64 p-8"><CommunityCirclePage /></div></div>} />
+              <Route path="/connect" element={<div className="flex"><DashboardSidebar /><div className="flex-1 ml-64 p-8"><CounselorConnectPage /></div></div>} />
+              <Route path="/ai-chat" element={<div className="flex"><DashboardSidebar /><div className="flex-1 ml-64 p-8"><AIChatPage /></div></div>} />
+              <Route path="/meditation" element={<div className="flex"><DashboardSidebar /><div className="flex-1 ml-64 p-8"><MeditationPage /></div></div>} />
+              
+              {/* --- Admin Routes --- */}
+              <Route path="/admin/dashboard" element={<div className="flex"><AdminSidebar /><div className="flex-1 ml-64 p-6"><AdminDashboardPage /></div></div>} />
+              <Route path="/admin/heatmaps" element={<div className="flex"><AdminSidebar /><div className="flex-1 ml-64 p-6"><UsageHeatmapsPage /></div></div>} />
+              <Route path="/admin/resource-gaps" element={<div className="flex"><AdminSidebar /><div className="flex-1 ml-64 p-6"><ResourceGapPage /></div></div>} />
+              <Route path="/admin/resources" element={<div className="flex"><AdminSidebar /><div className="flex-1 ml-64 p-6"><ResourceManagementPage /></div></div>} />
+              <Route path="/admin/counselors" element={<div className="flex"><AdminSidebar /><div className="flex-1 ml-64 p-6"><CounselorManagementPage /></div></div>} />
+              <Route path="/admin/moderation" element={<div className="flex"><AdminSidebar /><div className="flex-1 ml-64 p-6"><ModeratorDashboardPage /></div></div>} />
+              <Route path="/admin/notifications" element={<div className="flex"><AdminSidebar /><div className="flex-1 ml-64 p-6"><NotificationComposerPage /></div></div>} />
+              <Route path="/admin/events" element={<div className="flex"><AdminSidebar /><div className="flex-1 ml-64 p-6"><EventManagementPage /></div></div>} />
+              <Route path="/admin/settings" element={<div className="flex"><AdminSidebar /><div className="flex-1 ml-64 p-6"><PlatformSettingsPage /></div></div>} />
             </Routes>
           </PageTransition>
         </div>

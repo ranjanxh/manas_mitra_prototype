@@ -1,11 +1,9 @@
-// src/components/layout/Navbar.jsx
-
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { User } from 'lucide-react';
 import logo from '../../assets/logo.png';
 
-const Navbar = ({ isLoggedIn, onLogin }) => {
+const Navbar = ({ isLoggedIn, onLogin, onAdminLogin }) => {
   const activeLinkStyle = { color: '#2B59C3', fontWeight: '600' };
 
   return (
@@ -13,7 +11,7 @@ const Navbar = ({ isLoggedIn, onLogin }) => {
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
         {/* Logo */}
         <Link to="/" className="flex items-center space-x-2">
-          <img src={logo} alt="Manas Mitra Logo" className="h-8 w-auto" />
+          <img src={logo} alt="Manas Mitra Logo" className="h-12 w-auto" />
           <span className="text-xl font-bold text-dark-navy">Manas Mitra</span>
         </Link>
 
@@ -25,7 +23,7 @@ const Navbar = ({ isLoggedIn, onLogin }) => {
           <NavLink to="/contact" style={({ isActive }) => isActive ? activeLinkStyle : undefined} className="text-gray-600 hover:text-primary-blue transition-colors font-medium">Contact</NavLink>
         </div>
 
-        {/* Action Buttons: This part is now dynamic */}
+        {/* Action Buttons */}
         <div className="hidden md:flex items-center space-x-4">
           {isLoggedIn ? (
             // --- SHOWS IF LOGGED IN ---
@@ -33,7 +31,7 @@ const Navbar = ({ isLoggedIn, onLogin }) => {
               <Link to="/dashboard" className="px-5 py-2 rounded-lg font-medium text-white bg-primary-blue hover:bg-blue-700 transition-colors">
                 View Dashboard
               </Link>
-              <button className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center">
+              <button className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center" title="Profile">
                 <User className="w-5 h-5 text-gray-600" />
               </button>
             </>
@@ -45,6 +43,12 @@ const Navbar = ({ isLoggedIn, onLogin }) => {
                 className="px-5 py-2 rounded-lg font-medium text-primary-green border border-primary-green hover:bg-green-50 transition-colors"
               >
                 Login as Guest
+              </button>
+              <button
+                onClick={onAdminLogin}
+                className="px-5 py-2 rounded-lg font-medium text-red-600 border border-red-600 hover:bg-red-50 transition-colors"
+              >
+                Login as Admin
               </button>
               <Link to="/signup" className="px-5 py-2 rounded-lg font-medium text-white bg-primary-blue hover:bg-blue-700 transition-colors">
                 Sign Up

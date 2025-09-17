@@ -148,13 +148,13 @@ const PeerSupportSection = () => (
 const FeaturesPage = () => {
   return (
     <div className="min-h-screen font-sans bg-white">
-      <Navbar />
+      
       <HeroSection />
       <AICompanionSection />
       <CounsellorBookingSection />
       <ResourceHubSection />
       <PeerSupportSection />
-      <Footer />
+      
     </div>
   );
 };

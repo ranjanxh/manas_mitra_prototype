@@ -1,0 +1,23 @@
+1. text to speech
+2. ai wellness check in daily
+3. daily check in
+4. Sentiment Analysis for Admin Dashboard
+5. Contextual "Micro-Interactions"
+Admin Side
+1. Real-time Wellness Index: A main dashboard widget that displays an aggregated, anonymized "Campus Mood Index" (e.g., a score from 1-100) based on sentiment analysis of community posts and user check-ins. It could also show trend lines (e.g., "down 5% during mid-terms").
+2. Usage Heatmaps: A visual representation of platform usage across different departments, academic years, or even times of day. This can help identify which student groups are most engaged or which periods are highest in stress.
+3. Topic Trend Analysis: A chart or word cloud showing the most frequently discussed topics in the anonymous Community Circle and searches in the Wellness Library (e.g., "anxiety," "placements," "loneliness"). This provides direct insight into student concerns.
+4. Resource Management System (CMS): A simple interface for administrators or psychology department staff to upload, edit, and categorize new articles, videos, and audio resources in the Wellness Library. This could include features to tag content for specific issues or languages.
+
+Counselor Management: A section to add or remove counselor profiles, manage their specializations, and view their booking statistics (e.g., number of sessions conducted, average rating) to assess the counseling service's effectiveness.
+
+Peer Moderator Dashboard: A dedicated view for trained student moderators to review flagged content from the Community Circle, ensuring the platform remains a safe and supportive space.
+5. Targeted Push Notifications: The ability to send helpful, non-intrusive push notifications to specific student cohorts. For example, sending a link to a "Time Management" article to all final-year students a week before their project deadlines.
+
+Event Scheduling: A tool to create and promote campus-wide wellness events, like workshops, yoga sessions, or talks by mental health professionals, and track RSVPs through the platform.
+
+"Resource Gap" Identifier: An automated feature that flags topics students are searching for but for which there is little or no content in the Wellness Library, prompting administrators to create or source relevant resources.
+6. Anonymity & Privacy Controls: A settings panel where administrators can review and manage the platform's data anonymization protocols to ensure student privacy is always protected.
+
+Customizable Crisis Alerts: The ability to customize the emergency contact information and crisis protocols that are triggered when a student uses an "SOS" feature or types high-risk keywords.
+Sentiment Analysis for Admin Dashboard: Implement a Natural Language Processing (NLP) model that analyzes the anonymous text data from the Community Circle and Vent Jar. The admin dashboard could then display a real-time "Campus Mood Index," showing trends in topics like "exam stress," "loneliness," or "burnout" without ever exposing individual user data. This provides a powerful, data-driven tool for institutional planning.
